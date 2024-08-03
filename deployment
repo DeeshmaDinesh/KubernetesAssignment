@@ -1,0 +1,22 @@
+1.Check Current Deployment:
+		kubectl get deployments
+		kubectl describe deployment <deployment-name>
+
+	2.Prepare the New Image
+
+	3.Update the Image:
+		Edit deployment YAML to change the image.
+		Apply the updated YAML.
+
+		kubectl apply -f <updated-deployment-file>.yaml
+		
+	4.Monitor the Update:
+		kubectl rollout status deployment/<deployment-name>
+
+	5.Verify that the new version is running fine.
+		kubectl get pods
+		kubectl logs <pod-name>
+
+	6.If something goes wrong, you can easily revert to the previous version.
+
+		kubectl rollout undo deployment/<deployment-name>
