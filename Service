@@ -1,0 +1,42 @@
+
+Check the NodePort Service Configuration:
+------------------------------------------
+Ensure that the NodePort service is properly configured and pointing to the correct port of the replica set.
+kubectl get svc <service-name> -o yaml
+
+Verify ReplicaSet and Pod Status:
+-------------------------------------
+Ensure that the ReplicaSet is correctly managing the desired number of pods and that the pods are running.
+kubectl get rs <replicaset-name> 
+kubectl get pods -l app=<app-label>
+
+
+Check Pod Logs:
+-----------------------------
+Review the logs of the application pods to ensure that the application is starting up correctly and listening on the expected port.
+kubectl logs <pod-name>
+
+Verify Pod Connectivity:
+---------------------------------
+Check if the application is reachable within the cluster using port forwarding.
+kubectl port-forward <pod-name> 8000:8000
+ 
+Access the application locally at http://localhost:8000.
+
+
+Ensure NodePort Accessibility:
+---------------------------------
+Ensure that the NodePort range is open and accessible on the cluster nodes(30000-32767)
+
+
+Check NodePort Assignment:
+---------------------------------
+Verify that the NodePort service has been assigned a port within the correct range and is accessible externally.
+kubectl describe svc <service-name>
+
+Test NodePort Access:
+----------------------------------
+Attempt to access the application using the Node IP and NodePort.
+http://NodeIP:NodePort.
+
+
